@@ -27,8 +27,8 @@ Never gonna make you cry
 Never gonna say goodbye
 Never gonna tell a lie and hurt you
 
-(Ooh give you up) master change 1 line
-(Ooh give you up) brench fix change this line
+(Ooh give you up) /*master change 1 line*/
+(Ooh give you up) /*brench fix change this line*/
 (Ooh) never goona give never goona give (give you up)
 
 We've known each other for so long

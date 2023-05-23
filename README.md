@@ -13,19 +13,21 @@ git clone https://github.com/mizudp/test.git
 
 ### `git init`
 初始化git本地仓库
+该操作回在当前目录下创建.git文件夹
+该文件夹是隐藏的，需要在window资源管理器中的查看>显示>显示隐藏的项目
 
 ### `git add <file>`
-将文件添加到暂存区中（可删除）
+将文件添加到暂存区中（可删除）（不生成版本号）
 用`git restore --staged <file>`命令来删除撤销更改
 
 ### `git commit -m "message"`
-提交所有暂存区中的文件
+提交所有暂存区中的文件（生成版本号）
 
 ### `git status`
 查看本地库状态
 
 ### `git log`
-查看修改日志（历史）
+查看修改日志（很详细）
 
 ### `git reflog`
 查看精简版的修改日志
@@ -70,8 +72,8 @@ git clone https://github.com/mizudp/test.git
 ### `git push <remote> <branch>`
 将指定的分支提交到远程仓库
 
-###  `git pull <remote>`
-拉取远程仓库的代码。
+###  `git pull <remote> <branch>`
+拉取远程仓库的指定分支的代码。
 用于更新本地仓库，同步团队中其他人做出的修改
 
 ### `git clone <url>`
@@ -84,3 +86,6 @@ fatal: unable to access 'https://github.com/mizudp/test.git/': SSL certificate p
 ```
 **如果遇到该问题的话请用下面的命令来解决**
 `git config --global http.sslVerify false`
+
+## Git常用命令图
+![git](./git%20command.jpg)

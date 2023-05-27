@@ -76,8 +76,8 @@ git clone https://github.com/mizudp/test.git
 拉取远程仓库的指定分支的代码。
 用于更新本地仓库，同步团队中其他人做出的修改
 
-### `git clone <url>`
-克隆指定url的仓库
+### `git clone <url> <branch>`
+克隆指定url的仓库的指定分支
 
 ## 可能遇到的问题
 ```

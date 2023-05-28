@@ -1,14 +1,16 @@
-
+// version: 0.2;
 import java.util.Scanner;
 
 public class FunGame{
 
-
 	private Scanner sc;
-	public String[] name = new String[]{"六星","五星","四星","三星"};
+	private String[] name = new String[]{"六星","五星","四星","三星"};
 	private int arrLength = name.length;
 	private int[] history = new int[arrLength];
 	private int[] tmpHistory = new int[arrLength];
+	private int[] bestHistory = new int[arrLength];
+	private int[] range = new int[]{6,5,4,3};
+	private int bestScore;
 	private int times;
 
 	public FunGame(){
@@ -18,24 +20,35 @@ public class FunGame{
 
 	private void systemMenuChoose(){
 		int choose;
+		int score = 0;
+		int index = 0;
 		mainLoop:while(true) {
-			choose = getNum(1, 6);
+			choose = getNum(-2, 5);
 			switch(choose) {
 				// 单抽
 				case 1:
+					System.out.println();
 					System.out.println(name[start()]);
 					System.out.println();
 					break;
 				// 十连
 				case 2:
 					for(int i = 0;i < 10;i++){
-						tmpHistory[start()]++;
+						index = start();
+						tmpHistory[index]++;
+						// 加权算法
+						score += range[index];
 					}
-					for(int i = 0;i < arrLength;i++){
-						System.out.println("\t" + name[i] + ": " + tmpHistory[i]);
+					showData(null,tmpHistory);
+					// System.err.println(bestScore + ", " + score);
+					if(score >= bestScore && tmpHistory[0] >= bestHistory[0]){
+						bestScore = score;
+						for(int i = 0;i<arrLength;i++){
+							bestHistory[i] = tmpHistory[i];
+						}
 					}
+					score = 0;
 					tmpHistory = new int[arrLength];
-					System.out.println();
 					break;
 				// 打开菜单
 				case 3:
@@ -43,23 +56,35 @@ public class FunGame{
 					break;
 				// 统计
 				case 4:
-					System.out.println("统计结果如下：");
-					for(int i = 0;i < arrLength;i++){
-						System.out.println("\t" + name[i] + ": " + history[i]);
-					}
-					System.out.println();
+					System.out.println("已抽："+times);
+					showData("统计结果如下：", history);
 					break;
-				// 重置
+				// 查看最佳十连数据
 				case 5:
-					reset();
+					showData("本数据采用加权算法计算最佳数据\n最佳十连数据如下：", bestHistory);
 					break;
 				// 退出
-				case 6:
+				case -1:
+					System.out.println("已退出！");
 					break mainLoop;
+				// 重置
+				case -2:
+					reset();
+					break;
 				default:
 					System.err.println("no such a choose!");
 			}
 		}
+	}
+
+	public void showData(String info,int[] data){
+		System.out.println();
+		if(info!=null)
+			System.out.println(info);
+		for(int i = 0;i < arrLength;i++){
+			System.out.println("\t" + name[i] + ": " + data[i]);
+		}
+		System.out.println();
 	}
 
 	public int start(){
@@ -88,11 +113,14 @@ public class FunGame{
 
 	private void reset(){
 		times = 0;
+		bestScore = 0;
+		bestHistory = new int[arrLength];
 		history = new int[arrLength];
+		System.out.println("已重置");
 	}
 
 	private void systemMenu() {
-		System.out.println("功能如下: 1.单抽 2.十连 3.打开菜单 4.统计 5.重置 6.退出\n");
+		System.out.println("功能如下: 1.单抽 2.十连 3.打开菜单 4.统计 5.查看最佳十连数据 -2.重置 -1.退出\n");
 	}
 
 	private void introduce(){

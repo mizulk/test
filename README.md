@@ -1,11 +1,16 @@
 # 测试git团队协作的一个远程仓库
 
+## 视频教程
+[尚硅谷Git入门到精通全套教程（涵盖GitHub\Gitee码云\GitLab）-哔哩哔哩](https://b23.tv/JoFyPIN)
+
+**GitLab可以不用看**
+
 ## 克隆到本地命令
 在使用该测试仓库时，请将该仓库克隆到本地进行更改
 新建一个文件夹，进入该文件夹，右键>显示更多选项>Git bash here
 输入克隆命令：
 ```
-git clone https://github.com/mizudp/test.git
+git clone https://github.com/mizulk/test.git
 ```
 克隆成功后在进行相应的git命令练习或者来测试
 
@@ -82,7 +87,7 @@ git clone https://github.com/mizudp/test.git
 ## 可能遇到的问题
 ```
 $ git push test master
-fatal: unable to access 'https://github.com/mizudp/test.git/': SSL certificate problem: unable to get local issuer certificate
+fatal: unable to access 'https://github.com/mizulk/test.git/': SSL certificate problem: unable to get local issuer certificate
 ```
 **如果遇到该问题的话请用下面的命令来解决**
 `git config --global http.sslVerify false`

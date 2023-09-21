@@ -94,3 +94,23 @@ fatal: unable to access 'https://github.com/mizulk/test.git/': SSL certificate p
 
 ## Git常用命令图
 ![git](./git%20command.jpg)
+
+
+## git回退版本
+### 三种恢复等级
+`--soft`仅指针头
+`--mixed`指针头和暂存区
+`--hard`全部
+### 版本回退
+`git reset --hard HEAD^`返回上一个版本
+`git reset --hard HEAD^^`返回上上一个版本
+`git reset --hard HEAD~3`返回上三个版本
+`git reset --hard HEAD~10`返回上十个版本
+`git reset --hard <commit>`返回指定版本
+版本号可以通过`git reflog`或`git log`来查看
+最后用`git push -f`来强制更新远程仓库
+
+## git删除以跟踪的文件
+`git rm --cached <文件名>`
+`git rm --cached -r <目录>`
+删完后在commit即可

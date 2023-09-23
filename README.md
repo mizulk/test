@@ -114,3 +114,12 @@ fatal: unable to access 'https://github.com/mizulk/test.git/': SSL certificate p
 `git rm --cached <文件名>`
 `git rm --cached -r <目录>`
 删完后在commit即可
+
+
+## 使用SSH（免密登录）
+1. 打开Git Bash输入`ssh-keygen -t rsa -b 4096 -C "your_email@example.com"`其中的字符串可以是你的邮箱
+2. 一直回车即可，如果之前已经创建国SSH密钥，这需要在最后一部输入yes
+3. 输入`ssh-agent bash`和`ssh-add ~/.ssh/id_rsa`来将SSH添加到账户
+4. `cat ~/.ssh/id_rsa.pub`查看公钥并复制
+5. 点击你的GitHub头像再点击setting，左侧**SSH and GPG keys**，点击New SSH Key。title随便写，内容把复制的粘贴上去
+6. `ssh -T git@github.com`测试连接，有警告就输入yes

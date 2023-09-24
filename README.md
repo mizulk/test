@@ -117,9 +117,20 @@ fatal: unable to access 'https://github.com/mizulk/test.git/': SSL certificate p
 
 
 ## 使用SSH（免密登录）
+### 配置SSH
 1. 打开Git Bash输入`ssh-keygen -t rsa -b 4096 -C "your_email@example.com"`其中的字符串可以是你的邮箱
 2. 一直回车即可，如果之前已经创建国SSH密钥，这需要在最后一部输入yes
-3. 输入`ssh-agent bash`和`ssh-add ~/.ssh/id_rsa`来将SSH添加到账户
-4. `cat ~/.ssh/id_rsa.pub`查看公钥并复制
-5. 点击你的GitHub头像再点击setting，左侧**SSH and GPG keys**，点击New SSH Key。title随便写，内容把复制的粘贴上去
+3. `cat ~/.ssh/id_rsa.pub`查看公钥并复制(ctrl + ins 或 右键选择复制)
+4. 如果没有使用Git Bash的话，请复制C:\Users\用户名\.ssh\id_rsa.pub中的内容
+5. 点击你的GitHub头像再点击setting，左侧**SSH and GPG keys**，点击New SSH Key。title随便写（例如a），内容把复制的粘贴上去
 6. `ssh -T git@github.com`测试连接，有警告就输入yes
+
+### 使用SSH
+#### 新克隆的仓库
+例如`git clone git@github.com:mizulk/test.git`
+![useSSH](./image/ssh.png)
+
+#### 已经克隆下来的仓库
+1. 添加远程仓库地址`git remote add ssh git@github.com:mizulk/test.git`
+2. pull（拉取）使用`git pull ssh master`
+3. push（推送）使用`git push ssh master`

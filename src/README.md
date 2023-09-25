@@ -1,3 +1,3 @@
 # 抽奖小游戏（数据来源：明日方舟）
-双击击 runFunGame.bat 文件即可开始游戏
+双击 runFunGame.bat 文件即可开始游戏
 需要jdk 8 或以上的环境

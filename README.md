@@ -16,6 +16,12 @@ git clone https://github.com/mizulk/test.git
 
 ## git命令
 
+### 配置Git用户名和邮箱
+`git config --global user.name <your name>`配置用户名
+`git config --global user.email <your email>`配置邮箱
+以上配置可以在C:\Users\用户名\.gitconfig中查看或修改
+也可以使用`git config --list`来查看配置信息(--l 等等同于 -l)
+
 ### `git init`
 初始化git本地仓库
 该操作回在当前目录下创建.git文件夹
@@ -119,7 +125,7 @@ fatal: unable to access 'https://github.com/mizulk/test.git/': SSL certificate p
 ## 使用SSH（免密登录）
 ### 配置SSH
 1. 打开Git Bash输入`ssh-keygen -t rsa -b 4096 -C "your_email@example.com"`其中的字符串可以是你的邮箱
-2. 一直回车即可，如果之前已经创建国SSH密钥，这需要在最后一部输入yes
+2. 一直回车即可，如果之前已经创建过SSH密钥，这需要在最后一步（overwrite）输入yes
 3. `cat ~/.ssh/id_rsa.pub`查看公钥并复制(ctrl + ins 或 右键选择复制)
 4. 如果没有使用Git Bash的话，请复制C:\Users\用户名\.ssh\id_rsa.pub中的内容
 5. 点击你的GitHub头像再点击setting，左侧**SSH and GPG keys**，点击New SSH Key。title随便写（例如a），内容把复制的粘贴上去
@@ -134,3 +140,10 @@ fatal: unable to access 'https://github.com/mizulk/test.git/': SSL certificate p
 1. 添加远程仓库地址`git remote add ssh git@github.com:mizulk/test.git`
 2. pull（拉取）使用`git pull ssh master`
 3. push（推送）使用`git push ssh master`
+
+## 使用git的工作流程
+1. `git pull origin main`来拉取远程仓库的代码，确保本地代码是最新的
+2. 写想要更新的逻辑代码
+3. `git add .`将代码放到暂存区
+4. `git commit -m "对更新内容的简单描述"`只有commit(提交)完才能push(推送)
+5. `git push origin main`将本地的代码推送到远程仓库

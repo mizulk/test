@@ -5,6 +5,7 @@ public class FunGame{
 
 	private Scanner sc;
 	private String[] name = new String[]{"六星","五星","四星","三星"};
+	private int[] probabilities = new int[]{6,10,60,100};//2,8,50,40
 	private int arrLength = name.length;
 	private int[] history = new int[arrLength];
 	private int[] tmpHistory = new int[arrLength];
@@ -95,13 +96,13 @@ public class FunGame{
 			System.out.println("！！！保底啦！！！");
 		}
 		int i = 0;
-		if(l <= 2){//2
+		if(l <= probabilities[0]){//2
 			i = 0;
 			history[0]++;
-		}else if(l <= 10){//8
+		}else if(l <= probabilities[1]){//8
 			i =  1;
 			history[1]++;
-		}else if(l <= 60){//50
+		}else if(l <= probabilities[2]){//50
 			i = 2;
 			history[2]++;
 		}else{//40

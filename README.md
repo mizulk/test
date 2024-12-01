@@ -101,6 +101,18 @@ fatal: unable to access 'https://github.com/mizulk/test.git/': SSL certificate p
 ## Git常用命令图
 ![git](./git%20command.jpg)
 
+## git tag 命令
+
+1. `git tag --list` 列出所有的标签
+2. `git tag <tag_name>` 创建一个标签
+3. `git tag -a <tag_name> -m "<tag_description>"` 创建一个带有注释的标签
+4. `git show <tag_name>` 查看标签信息
+5. `git ls-remote --tags <remote_name>` 查看所有的远程标签及commit ID
+6. `git tag -d <tag_name>` 删除一个标签
+7. `git push --delete <remote_name> <tag_name> `删除远程仓库的标签
+8. `git push <remote_name> <tag_name>` 推送一个标签到远程
+9. `git push <remote_name> --tags` 推送多个本地标签到远程
+
 
 ## git回退版本
 ### 三种恢复等级
@@ -130,6 +142,10 @@ fatal: unable to access 'https://github.com/mizulk/test.git/': SSL certificate p
 4. 如果没有使用Git Bash的话，请复制C:\Users\用户名\.ssh\id_rsa.pub中的内容
 5. 点击你的GitHub头像再点击setting，左侧**SSH and GPG keys**，点击New SSH Key。title随便写（例如a），内容把复制的粘贴上去
 6. `ssh -T git@github.com`测试连接，有警告就输入yes
+
+### 加密算法推荐使用`ED25519`
+
+1. 即将第一步改为`ssh-keygen -t ed25519 -C "your_email@example.com" `即可
 
 ### 使用SSH
 #### 新克隆的仓库

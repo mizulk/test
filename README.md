@@ -6,9 +6,10 @@
 **GitLab可以不用看**
 
 ## 克隆到本地命令
-在使用该测试仓库时，请将该仓库克隆到本地进行更改
-新建一个文件夹，进入该文件夹，右键>显示更多选项>Git bash here
+在使用该测试仓库时，请将该仓库克隆到本地进行更改  
+新建一个文件夹，进入该文件夹，右键>显示更多选项>Git bash here  
 输入克隆命令：
+
 ```
 git clone https://github.com/mizulk/test.git
 ```
@@ -146,6 +147,105 @@ fatal: unable to access 'https://github.com/mizulk/test.git/': SSL certificate p
 `git rm --cached <文件名>`
 `git rm --cached -r <目录>`
 删完后在commit即可
+
+## git 修改历史提交消息
+
+### 修改最近的提交消息
+
+`git commit --amend -m "<commit_msg>"`
+
+### 修改历史消息
+
+`git rebase -i HEAD~2` 其中~2表示修改最近两次提交，`git rebas -i HEAD~n` 修改最近n次提交。
+输入命令后将会进入如下界面，最新的提交在最下面（使用vim编辑器）：
+
+```git-rebase-todo
+pick d80be02 在README.md中添加有关于git tag的命令
+pick 1be2a1f README.md: 添加有关于git branch的命令和调整文案
+
+# Rebase eb2f65a..1be2a1f onto eb2f65a (2 commands)
+#
+# Commands:
+# p, pick <commit> = use commit
+# r, reword <commit> = use commit, but edit the commit message
+# e, edit <commit> = use commit, but stop for amending
+# s, squash <commit> = use commit, but meld into previous commit
+# f, fixup [-C | -c] <commit> = like "squash" but keep only the previous
+#                    commit's log message, unless -C is used, in which case
+#                    keep only this commit's message; -c is same as -C but
+#                    opens the editor
+# x, exec <command> = run command (the rest of the line) using shell
+# b, break = stop here (continue rebase later with 'git rebase --continue')
+# d, drop <commit> = remove commit
+# l, label <label> = label current HEAD with a name
+# t, reset <label> = reset HEAD to a label
+# m, merge [-C <commit> | -c <commit>] <label> [# <oneline>]
+#         create a merge commit using the original merge commit's
+#         message (or the oneline, if no original merge commit was
+#         specified); use -c <commit> to reword the commit message
+# u, update-ref <ref> = track a placeholder for the <ref> to be updated
+#                       to this position in the new commits. The <ref> is
+#                       updated at the end of the rebase
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+#
+# However, if you remove everything, the rebase will be aborted.
+#
+
+```
+
+根据注释内容，修改对应的提交记录。
+这里需要修改提交记录，使用「**r, reword**」，按**i**键进入编辑模式。
+修改后的入下（省略注释）：
+
+```git-rebase-todo
+reword d80be02 README.md: 添加有关于git tag的命令
+pick 1be2a1f README.md: 添加有关于git branch的命令和调整文案
+```
+
+编辑完成后按**ESC**键进入vim命令模式，输入命令`:wq`保存并退出，紧接着进入如下界面：
+
+```
+在README.md中添加有关于git tag的命令
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Date:      Sun Dec 1 23:34:50 2024 +0800
+#
+# interactive rebase in progress; onto eb2f65a
+# Last command done (1 command done):
+#    reword d80be02 README.md: 添加有关于git tag的命令
+# Next command to do (1 remaining command):
+#    pick 1be2a1f README.md: 添加有关于git branch的命令和调整文案
+# You are currently editing a commit while rebasing branch 'master' on 'eb2f65a'.
+#
+# Changes to be committed:
+#	modified:   README.md
+#
+
+```
+
+按**i**键进入编辑模式并修改第一行提交信息（省略注释）：
+
+```
+README.md: 添加有关于git tag的命令
+```
+
+按**ESC**退出编辑模式，并输入`:wq`保存并退出
+
+```
+$ git rebase -i HEAD~2
+[detached HEAD 78c70db] README.md: 添加有关于git tag的命令
+ Date: Sun Dec 1 23:34:50 2024 +0800
+ 1 file changed, 16 insertions(+)
+Successfully rebased and updated refs/heads/master.
+
+```
+
+修改成功后用`git push -u -f ssh master`强制推送
 
 
 ## 使用SSH（免密登录）

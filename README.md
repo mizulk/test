@@ -14,21 +14,21 @@ git clone https://github.com/mizulk/test.git
 ```
 克隆成功后在进行相应的git命令练习或者来测试
 
-## git命令
+## git命令基础
 
 ### 配置Git用户名和邮箱
-`git config --global user.name <your name>`配置用户名
-`git config --global user.email <your email>`配置邮箱
-以上配置可以在C:\Users\用户名\.gitconfig中查看或修改
-也可以使用`git config --list`来查看配置信息(--l 等等同于 -l)
+`git config --global user.name <your name>`配置用户名  
+`git config --global user.email <your email>`配置邮箱  
+以上配置可以在C:\Users\用户名\.gitconfig中查看或修改  
+也可以使用`git config --list`来查看配置信息(-l 是--list的别名)
 
 ### `git init`
-初始化git本地仓库
-该操作回在当前目录下创建.git文件夹
+初始化git本地仓库  
+该操作回在当前目录下创建.git文件夹  
 该文件夹是隐藏的，需要在window资源管理器中的查看>显示>显示隐藏的项目
 
 ### `git add <file>`
-将文件添加到暂存区中（可删除）（不生成版本号）
+将文件添加到暂存区中（可删除）（不生成版本号）  
 用`git restore --staged <file>`命令来删除撤销更改
 
 ### `git commit -m "message"`
@@ -44,7 +44,7 @@ git clone https://github.com/mizulk/test.git
 查看精简版的修改日志
 
 ### `git reset --hard <head>`
-切换至指定版本号（需要完整的）的版本
+切换至指定版本号（需要完整的）的版本  
 每次commit都回生成指定的版本号
 
 ### `git branch`
@@ -60,9 +60,10 @@ git clone https://github.com/mizulk/test.git
 切换到指定分支
 
 ### `git merge <branch>`
-将指定分支合并到当前分支
-当同一行被修改时，需要人工进行合并。
+将指定分支合并到当前分支  
+当同一行被修改时，需要人工进行合并。  
 会出现如下情况：
+
 ```
 <<<< branch1
 ……内容1……
@@ -70,8 +71,8 @@ git clone https://github.com/mizulk/test.git
 ……内容2……
 >>>> branch2
 ```
-将其中一个内容保存下来（删去所有的大于小于等于号，仅留下你需要的内容即可）
-然后输入命令`git add <file>`和`git commit -m "commit message"`来完成合并
+将其中一个内容保存下来（删去所有的大于小于等于号，仅留下你需要的内容即可）  
+然后输入命令`git add <file>`和`git commit -m "commit message"`来完成合并  
 你也可以用`git add .`来将所有文件添加到暂存区
 
 ### `git remote -v`
@@ -84,7 +85,7 @@ git clone https://github.com/mizulk/test.git
 将指定的分支提交到远程仓库
 
 ###  `git pull <remote> <branch>`
-拉取远程仓库的指定分支的代码。
+拉取远程仓库的指定分支的代码。  
 用于更新本地仓库，同步团队中其他人做出的修改
 
 ### `git clone <url> <branch>`
@@ -113,19 +114,32 @@ fatal: unable to access 'https://github.com/mizulk/test.git/': SSL certificate p
 8. `git push <remote_name> <tag_name>` 推送一个标签到远程
 9. `git push <remote_name> --tags` 推送多个本地标签到远程
 
+## git branch 命令
+
+1. `git branch -m <old_branch> <new_branch>` 修改指定分支的名称
+2. `git branch -m <new_branch>` 修改当前的分支的名称
+3. `git branch <new_branch>` 创建新分支
+4. `git branch -d <branch>` 删除本地分支
+5. `git branch -D <branch>`或`git branch --delete --force <branch>` 强！制！删！除！本地分支
+6. `git push <remote> -d <remote_branch>` 删除远程分支
+7. `git branch -a`或`git branch --all` 查看所有分支，包括远程
+8. `git branch` 查看本地分支
+9. `git branch -r`或`git branch --remotes` 查看远程分支
+
 
 ## git回退版本
 ### 三种恢复等级
-`--soft`仅指针头
-`--mixed`指针头和暂存区
+`--soft`仅指针头  
+`--mixed`指针头和暂存区  
 `--hard`全部
+
 ### 版本回退
-`git reset --hard HEAD^`返回上一个版本
-`git reset --hard HEAD^^`返回上上一个版本
-`git reset --hard HEAD~3`返回上三个版本
-`git reset --hard HEAD~10`返回上十个版本
-`git reset --hard <commit>`返回指定版本
-版本号可以通过`git reflog`或`git log`来查看
+`git reset --hard HEAD^`返回上一个版本  
+`git reset --hard HEAD^^`返回上上一个版本  
+`git reset --hard HEAD~3`返回上三个版本  
+`git reset --hard HEAD~10`返回上十个版本  
+`git reset --hard <commit>`返回指定版本  
+版本号可以通过`git reflog`或`git log`来查看  
 最后用`git push -f`来强制更新远程仓库
 
 ## git删除以跟踪的文件

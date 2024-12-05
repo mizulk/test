@@ -1,7 +1,7 @@
 # 测试git团队协作的一个远程仓库
 
 ## 视频教程
-[尚硅谷Git入门到精通全套教程（涵盖GitHub\Gitee码云\GitLab）-哔哩哔哩](https://b23.tv/JoFyPIN)
+[尚硅谷Git入门到精通全套教程（涵盖GitHub\Gitee码云\GitLab）-哔哩哔哩](https://www.bilibili.com/video/BV1vy4y1s7k6)
 
 **GitLab可以不用看**
 
